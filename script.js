@@ -43,15 +43,12 @@ const apiKey = 'COLOQUE_SUA_API_KEY_AQUI'; // Insira sua chave da API OpenWeathe
 const searchBtn = document.getElementById('search-weather');
 const cityInput = document.getElementById('city-input');
 
-async function fetchWeather(city) {
-    if (!apiKey || apiKey === 'COLOQUE_SUA_API_KEY_AQUI') {
-        document.getElementById('temp').innerText = "28°C";
-        document.getElementById('condition').innerText = "Ensolarado";
-        return;
-    }
+// Remova a const apiKey do script.js, ela não fica mais aqui!
 
+async function fetchWeather(city) {
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&lang=pt_br&appid=${apiKey}`);
+        // O Front-End pede os dados para a sua própria rota da Vercel
+        const response = await fetch(`/api/weather?cidade=${encodeURIComponent(city)}`);
         const data = await response.json();
         
         if (data.cod === 200) {
