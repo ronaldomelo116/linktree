@@ -1,0 +1,327 @@
+/* =========================================================
+   ESTILOS BASE (MOBILE FIRST)
+   ========================================================= */
+
+:root {
+    --bg-sky-day: linear-gradient(180deg, #3a7bd5 0%, #3a6073 100%);
+    --bg-sky-night: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    --text-color: #ffffff;
+    --box-bg: rgba(10, 10, 20, 0.8);
+    --neon-accent: #00ffcc;
+    --border-color: #00ffcc;
+}
+
+body.night {
+    --neon-accent: #ff00ff;
+    --border-color: #ff00ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', monospace, sans-serif;
+}
+
+body {
+    background-color: #0b0c10;
+    color: var(--text-color);
+    min-height: 100vh; /* Garante que cubra a tela, mas permite crescer */
+    height: auto;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto; /* Ativa a barra de rolagem */
+    position: relative;
+    padding: 20px 12px 40px; /* Adiciona espaço no rodapé para os botões não colarem */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Evita centralização forçada que esmaga o conteúdo */
+}
+/* Fundo Parallax Fixo */
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#sky {
+    background: var(--bg-sky-day);
+    transition: background 1.5s ease;
+}
+
+body.night #sky {
+    background: var(--bg-sky-night);
+}
+
+/* Elementos Celestes (Sol / Lua) */
+body.day #celestial-body {
+    background: radial-gradient(circle at 50% 50%, #ffe600 0%, #ffaa00 40%, transparent 70%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    box-shadow: 0 0 25px #ffe600;
+}
+
+body.night #celestial-body {
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #dcdcdc 50%, transparent 80%);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+/* Header & Widgets */
+.widgets-container {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    z-index: 10;
+}
+
+.pixel-box {
+    background: var(--box-bg);
+    border: 3px solid var(--border-color);
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 4px 4px 0px #000;
+    font-size: 9px;
+    backdrop-filter: blur(4px);
+}
+
+#clock-widget {
+    text-align: center;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+#weather-widget {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.weather-search {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+}
+
+.weather-search input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--border-color);
+    color: #fff;
+    padding: 8px;
+    font-size: 8px;
+    outline: none;
+    border-radius: 4px;
+}
+
+.weather-search button {
+    background: var(--border-color);
+    color: #000;
+    border: none;
+    padding: 8px 12px;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.weather-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: var(--neon-accent);
+}
+
+/* Container Principal */
+.main-content {
+    width: 100%;
+    max-width: 480px;
+    background: var(--box-bg);
+    border: 4px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px 16px;
+    box-shadow: 6px 6px 0px #000;
+    text-align: center;
+    backdrop-filter: blur(6px);
+    z-index: 5;
+}
+
+.img-wrapper {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 16px;
+    border: 4px solid var(--border-color);
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 15px var(--border-color);
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.name {
+    font-size: 14px;
+    margin-bottom: 14px;
+    color: var(--neon-accent);
+    text-shadow: 2px 2px 0px #000;
+    line-height: 1.4;
+}
+
+.bio {
+    font-size: 9px;
+    line-height: 1.8;
+    margin-bottom: 24px;
+    color: #e0e0e0;
+    text-align: justify;
+}
+
+/* Botões */
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pixel-btn {
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(20, 20, 30, 0.9);
+    padding: 14px 10px;
+    border: 3px solid var(--border-color);
+    font-size: 10px;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    box-shadow: 4px 4px 0px #000;
+    
+    /* Flexbox para centralizar o ícone com o texto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+}
+
+.pixel-btn i {
+    font-size: 16px;
+}
+
+.pixel-btn:hover, .pixel-btn:active {
+    background: var(--border-color);
+    color: #000000;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000;
+}
+
+/* =========================================================
+   MEDIA QUERIES (TABLETS E DESKTOPS)
+   ========================================================= */
+
+/* Tablets (Largura a partir de 600px) */
+@media screen and (min-width: 600px) {
+    body {
+        padding: 30px 20px;
+    }
+
+    .widgets-container {
+        max-width: 580px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+
+    #clock-widget {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+    }
+
+    #weather-widget {
+        flex: 1.4;
+    }
+
+    .main-content {
+        max-width: 580px;
+        padding: 32px 28px;
+    }
+
+    .img-wrapper {
+        width: 130px;
+        height: 130px;
+    }
+
+    .name {
+        font-size: 18px;
+    }
+
+    .bio {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .pixel-btn {
+        font-size: 11px;
+        padding: 16px;
+    }
+}
+
+/* Desktops e Telas Grandes (Largura a partir de 992px) */
+@media screen and (min-width: 992px) {
+    body {
+        justify-content: center;
+        padding: 40px 0;
+    }
+
+    .widgets-container {
+        max-width: 640px;
+        margin-bottom: 25px;
+    }
+
+    .main-content {
+        max-width: 640px;
+        padding: 40px 36px;
+    }
+
+    .bio {
+        font-size: 11px;
+        line-height: 2;
+    }
+
+    .pixel-btn {
+        font-size: 12px;
+    }
+
+    body.day #celestial-body {
+        width: 90px;
+        height: 90px;
+        top: 50px;
+        right: 60px;
+    }
+
+    body.night #celestial-body {
+        width: 75px;
+        height: 75px;
+        top: 50px;
+        right: 60px;
+    }
+}

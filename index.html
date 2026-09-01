@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ronaldo Mello - Bio Links</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="day">
+
+    <div class="parallax-bg layer-1" id="sky"></div>
+    <div class="parallax-bg layer-2" id="celestial-body"></div>
+
+    <header class="widgets-container">
+        <div class="widget pixel-box" id="clock-widget">
+            <span id="time">00:00:00</span>
+        </div>
+        
+        <div class="widget pixel-box" id="weather-widget">
+            <div class="weather-search">
+                <input type="text" id="city-input" placeholder="Sua cidade..." value="Natal">
+                <button id="search-weather">🔍</button>
+            </div>
+            <div class="weather-info">
+                <span id="temp">--°C</span>
+                <span id="condition">Buscando...</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="profile-container">
+            <div class="img-wrapper">
+                <img src="img/foto.png" alt="Ronaldo Mello" id="profile-img" onerror="this.src='https://via.placeholder.com/150/000000/00FF00?text=Ronaldo'">
+            </div>
+            <h1 class="name">Ronaldo Mello</h1>
+            <p class="bio">
+                Olá meu nome é Ronaldo Mello faço de tudo um pouco, sou produtor de videos (edição e animação) editor de Photoshop, e agora Aprendendo a Desenvolver Sites (HTML, CSS e JavaScript) - Desenvolvedor Front-End.
+            </p>
+        </section>
+
+	<nav class="links-container">
+            <a href="https://instagram.com/ronalldo.mello/" target="_blank" class="pixel-btn">
+                <i class="bi bi-instagram"></i> Instagram
+            </a>
+            <a href="https://youtube.com/@RonaldoMelloRN/" target="_blank" class="pixel-btn">
+                <i class="bi bi-youtube"></i> YouTube
+            </a>
+            <a href="https://linkedin.com/in/ronaldo-melo-de-oliveira/" target="_blank" class="pixel-btn">
+                <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/ronaldomelo116" target="_blank" class="pixel-btn">
+                <i class="bi bi-github"></i> GitHub
+            </a>
+        </nav>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
