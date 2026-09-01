@@ -1,19 +1,24 @@
-/* =========================================================
-   ESTILOS BASE (MOBILE FIRST)
-   ========================================================= */
-
 :root {
     --bg-sky-day: linear-gradient(180deg, #3a7bd5 0%, #3a6073 100%);
-    --bg-sky-night: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    --bg-sky-night: linear-gradient(180deg, #090a0f 0%, #151b29 50%, #1f283d 100%);
     --text-color: #ffffff;
-    --box-bg: rgba(10, 10, 20, 0.8);
+    --box-bg: rgba(15, 15, 25, 0.85);
     --neon-accent: #00ffcc;
     --border-color: #00ffcc;
+    
+    /* Cores das Montanhas - Dia */
+    --mountain-back-color: #2b4c7e;
+    --mountain-front-color: #1a3052;
+    --cloud-color: rgba(255, 255, 255, 0.85);
 }
 
 body.night {
     --neon-accent: #ff00ff;
     --border-color: #ff00ff;
+    /* Cores das Montanhas - Noite */
+    --mountain-back-color: #101526;
+    --mountain-front-color: #080b14;
+    --cloud-color: rgba(180, 200, 255, 0.4);
 }
 
 * {
@@ -26,18 +31,19 @@ body.night {
 body {
     background-color: #0b0c10;
     color: var(--text-color);
-    min-height: 100vh; /* Garante que cubra a tela, mas permite crescer */
+    min-height: 100vh;
     height: auto;
     width: 100%;
     overflow-x: hidden;
-    overflow-y: auto; /* Ativa a barra de rolagem */
+    overflow-y: auto;
     position: relative;
-    padding: 20px 12px 40px; /* Adiciona espaço no rodapé para os botões não colarem */
+    padding: 20px 12px 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Evita centralização forçada que esmaga o conteúdo */
+    justify-content: flex-start;
 }
+
 /* Fundo Parallax Fixo */
 .parallax-bg {
     position: fixed;
@@ -45,13 +51,14 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
+    z-index: -5;
     pointer-events: none;
 }
 
 #sky {
     background: var(--bg-sky-day);
     transition: background 1.5s ease;
+    z-index: -6;
 }
 
 body.night #sky {
@@ -60,25 +67,81 @@ body.night #sky {
 
 /* Elementos Celestes (Sol / Lua) */
 body.day #celestial-body {
-    background: radial-gradient(circle at 50% 50%, #ffe600 0%, #ffaa00 40%, transparent 70%);
-    width: 70px;
-    height: 70px;
+    background: radial-gradient(circle at 50% 50%, #ffe600 0%, #ff8800 50%, transparent 75%);
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    position: absolute;
-    top: 30px;
-    right: 20px;
-    box-shadow: 0 0 25px #ffe600;
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    box-shadow: 0 0 30px #ffe600;
+    z-index: -5;
 }
 
 body.night #celestial-body {
-    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #dcdcdc 50%, transparent 80%);
-    width: 55px;
-    height: 55px;
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #cceeff 50%, transparent 80%);
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+    z-index: -5;
+}
+
+/* --- Nuvens Pixel Art --- */
+.layer-clouds {
+    z-index: -4;
+}
+
+.pixel-cloud {
     position: absolute;
-    top: 30px;
-    right: 20px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    background: var(--cloud-color);
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+    image-rendering: pixelated;
+}
+
+.pixel-cloud.c1 {
+    width: 120px;
+    height: 30px;
+    top: 15%;
+    left: 10%;
+    animation: floatCloud 25s linear infinite;
+}
+
+.pixel-cloud.c2 {
+    width: 160px;
+    height: 40px;
+    top: 25%;
+    left: 60%;
+    animation: floatCloud 35s linear infinite reverse;
+}
+
+@keyframes floatCloud {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(calc(100vw + 150px)); }
+}
+
+/* --- Montanhas Pixel Art 3D --- */
+.layer-mountains-back {
+    z-index: -3;
+    bottom: 0;
+    top: auto;
+    height: 45vh;
+}
+
+.layer-mountains-front {
+    z-index: -2;
+    bottom: 0;
+    top: auto;
+    height: 35vh;
+}
+
+.pixel-mountain-svg {
+    width: 100%;
+    height: 100%;
+    shape-rendering: crispEdges; /* Mantém o corte pixelado retrô nas linhas */
 }
 
 /* Header & Widgets */
@@ -99,7 +162,7 @@ body.night #celestial-body {
     border-radius: 6px;
     box-shadow: 4px 4px 0px #000;
     font-size: 9px;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
 }
 
 #clock-widget {
@@ -159,7 +222,7 @@ body.night #celestial-body {
     padding: 24px 16px;
     box-shadow: 6px 6px 0px #000;
     text-align: center;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
     z-index: 5;
 }
 
@@ -210,14 +273,12 @@ body.night #celestial-body {
     border: 3px solid var(--border-color);
     font-size: 10px;
     text-transform: uppercase;
-    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     box-shadow: 4px 4px 0px #000;
-    
-    /* Flexbox para centralizar o ícone com o texto */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; 
+    gap: 10px;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .pixel-btn i {
@@ -234,94 +295,22 @@ body.night #celestial-body {
 /* =========================================================
    MEDIA QUERIES (TABLETS E DESKTOPS)
    ========================================================= */
-
-/* Tablets (Largura a partir de 600px) */
 @media screen and (min-width: 600px) {
-    body {
-        padding: 30px 20px;
-    }
-
-    .widgets-container {
-        max-width: 580px;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: stretch;
-    }
-
-    #clock-widget {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 11px;
-    }
-
-    #weather-widget {
-        flex: 1.4;
-    }
-
-    .main-content {
-        max-width: 580px;
-        padding: 32px 28px;
-    }
-
-    .img-wrapper {
-        width: 130px;
-        height: 130px;
-    }
-
-    .name {
-        font-size: 18px;
-    }
-
-    .bio {
-        font-size: 10px;
-        text-align: center;
-    }
-
-    .pixel-btn {
-        font-size: 11px;
-        padding: 16px;
-    }
+    body { padding: 30px 20px; }
+    .widgets-container { max-width: 580px; flex-direction: row; justify-content: space-between; align-items: stretch; }
+    #clock-widget { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+    #weather-widget { flex: 1.4; }
+    .main-content { max-width: 580px; padding: 32px 28px; }
+    .img-wrapper { width: 130px; height: 130px; }
+    .name { font-size: 18px; }
+    .bio { font-size: 10px; text-align: center; }
+    .pixel-btn { font-size: 11px; padding: 16px; }
 }
 
-/* Desktops e Telas Grandes (Largura a partir de 992px) */
 @media screen and (min-width: 992px) {
-    body {
-        justify-content: center;
-        padding: 40px 0;
-    }
-
-    .widgets-container {
-        max-width: 640px;
-        margin-bottom: 25px;
-    }
-
-    .main-content {
-        max-width: 640px;
-        padding: 40px 36px;
-    }
-
-    .bio {
-        font-size: 11px;
-        line-height: 2;
-    }
-
-    .pixel-btn {
-        font-size: 12px;
-    }
-
-    body.day #celestial-body {
-        width: 90px;
-        height: 90px;
-        top: 50px;
-        right: 60px;
-    }
-
-    body.night #celestial-body {
-        width: 75px;
-        height: 75px;
-        top: 50px;
-        right: 60px;
-    }
+    body { justify-content: center; padding: 40px 0; }
+    .widgets-container { max-width: 640px; margin-bottom: 25px; }
+    .main-content { max-width: 640px; padding: 40px 36px; }
+    .bio { font-size: 11px; line-height: 2; }
+    .pixel-btn { font-size: 12px; }
 }
