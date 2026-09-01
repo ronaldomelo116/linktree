@@ -39,7 +39,6 @@ window.addEventListener("mousemove", (e) => {
 });
 
 // 3. Integração com API de Clima (OpenWeatherMap)
-const apiKey = 'COLOQUE_SUA_API_KEY_AQUI'; // Insira sua chave da API OpenWeatherMap
 const searchBtn = document.getElementById('search-weather');
 const cityInput = document.getElementById('city-input');
 
