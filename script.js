@@ -20,18 +20,22 @@ function updateClockAndTheme() {
 setInterval(updateClockAndTheme, 1000);
 updateClockAndTheme();
 
-// 2. Animação de Entrada e Parallax com GSAP
+// 2. Animação de Entrada e Parallax 3D com GSAP
 gsap.from(".widgets-container", { y: -30, opacity: 0, duration: 1, ease: "power2.out" });
 gsap.from(".main-content", { y: 40, opacity: 0, duration: 1.2, delay: 0.3, ease: "power3.out" });
 gsap.from(".pixel-btn", { scale: 0.8, opacity: 0, duration: 0.6, stagger: 0.15, delay: 0.8 });
 
-// Parallax suave no ponteiro/mouse
+// Parallax Avançado por Camadas (Efeito 3D Profundo)
 window.addEventListener("mousemove", (e) => {
-    const moveX = (e.clientX / window.innerWidth - 0.5) * 15;
-    const moveY = (e.clientY / window.innerHeight - 0.5) * 15;
+    const moveX = (e.clientX / window.innerWidth - 0.5);
+    const moveY = (e.clientY / window.innerHeight - 0.5);
 
-    gsap.to("#celestial-body", { x: moveX * 1.5, y: moveY * 1.5, duration: 1 });
-    gsap.to(".main-content", { x: moveX * -0.5, y: moveY * -0.5, duration: 1 });
+    // Cada camada se desloca numa proporção diferente (fundo mais lento, frente mais rápido)
+    gsap.to("#celestial-body", { x: moveX * 20, y: moveY * 20, duration: 1 });
+    //gsap.to(".layer-clouds", { x: moveX * 40, y: moveY * 10, duration: 1 });//
+    gsap.to("#mountains-back", { x: moveX * 60, y: moveY * 15, duration: 1 });
+    gsap.to("#mountains-front", { x: moveX * 100, y: moveY * 25, duration: 1 });
+    gsap.to(".main-content", { x: moveX * -20, y: moveY * -20, duration: 1 }); // O card central flutua ao contrário
 });
 
 // 3. Integração com API de Clima (OpenWeatherMap)
