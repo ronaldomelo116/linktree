@@ -1,24 +1,25 @@
 :root {
-    --bg-sky-day: linear-gradient(180deg, #3a7bd5 0%, #3a6073 100%);
+    --bg-sky-day: url('img/ceudia.png');
     --bg-sky-night: linear-gradient(180deg, #090a0f 0%, #151b29 50%, #1f283d 100%);
     --text-color: #ffffff;
-    --box-bg: rgba(15, 15, 25, 0.85);
+    --box-bg: rgba(15, 15, 25, 0.2);
     --neon-accent: #00ffcc;
     --border-color: #00ffcc;
     
     /* Cores das Montanhas - Dia */
-    --mountain-back-color: #2b4c7e;
-    --mountain-front-color: #1a3052;
+    --mountain-back-img: url('img/montanha-tras-dia.png');
+    --mountain-front-img: url('img/montanha-frente-dia.png');
     --cloud-color: rgba(255, 255, 255, 0.85);
 }
 
 body.night {
-    --neon-accent: #ff00ff;
-    --border-color: #ff00ff;
+    --bg-sky-night: url('img/ceunoite.png');
+    --neon-accent: #3cff00;
+    --border-color: #00ff15;
     /* Cores das Montanhas - Noite */
-    --mountain-back-color: #101526;
-    --mountain-front-color: #080b14;
-    --cloud-color: rgba(180, 200, 255, 0.4);
+    --mountain-back-img: url('img/montanha-tras-noite.png');
+    --mountain-front-img: url('img/montanha-frente-noite.png');
+    --cloud-color: rgba(180, 200, 255, 0.8);
 }
 
 * {
@@ -56,13 +57,16 @@ body {
 }
 
 #sky {
-    background: var(--bg-sky-day);
-    transition: background 1.5s ease;
+    background-image: var(--bg-sky-day);
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    transition: background-image 1.5s ease;
     z-index: -6;
 }
 
 body.night #sky {
-    background: var(--bg-sky-night);
+    background-image: var(--bg-sky-night);
 }
 
 /* Elementos Celestes (Sol / Lua) */
@@ -126,16 +130,32 @@ body.night #celestial-body {
 /* --- Montanhas Pixel Art 3D --- */
 .layer-mountains-back {
     z-index: -3;
-    bottom: 0;
     top: auto;
-    height: 45vh;
+    bottom: -5%; /* Margem extra de segurança para o Parallax vertical */
+    height: 45vh; 
+    width: 120vw; /* Deixa a imagem 20% maior que a tela para sobrar espaço pro Parallax */
+    left: -10vw;  /* Centraliza a sobra */
+    
+    background-image: var(--mountain-back-img);
+    background-size: auto 100%; /* Ajusta a altura da imagem à div */
+    background-repeat: repeat-x; /* Repete a imagem lateralmente se a tela for muito larga */
+    background-position: bottom center;
+    transition: background-image 1.5s ease;
 }
 
 .layer-mountains-front {
     z-index: -2;
-    bottom: 0;
     top: auto;
-    height: 35vh;
+    bottom: -5%;
+    height: 35vh; 
+    width: 120vw;
+    left: -10vw;
+    
+    background-image: var(--mountain-front-img);
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+    background-position: bottom center;
+    transition: background-image 1.5s ease;
 }
 
 .pixel-mountain-svg {
@@ -256,6 +276,11 @@ body.night #celestial-body {
     margin-bottom: 24px;
     color: #e0e0e0;
     text-align: justify;
+}
+
+.bio span {
+    color: var(--neon-accent);
+    font-weight: bold;
 }
 
 /* Botões */
