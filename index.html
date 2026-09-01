@@ -4,15 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ronaldo Mello - Bio Links</title>
+    <!-- Fonte Pixel Art -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="day">
 
-    <div class="parallax-bg layer-1" id="sky"></div>
-    <div class="parallax-bg layer-2" id="celestial-body"></div>
+    <!-- Camadas Parallax de Fundo (3D Pixel Art) -->
+    <div class="parallax-bg layer-sky" id="sky"></div>
+    <div class="parallax-bg layer-celestial" id="celestial-body"></div>
+    
+    <!-- Nuvens Pixel Art
+    <div class="parallax-bg layer-clouds" id="clouds-layer">
+        <div class="pixel-cloud c1"></div>
+        <div class="pixel-cloud c2"></div>
+    </div> -->
 
+    <!-- Montanhas Pixel Art 3D (Traseira) -->
+    <div class="parallax-bg layer-mountains-back" id="mountains-back">
+        <svg class="pixel-mountain-svg" viewBox="0 0 1000 300" preserveAspectRatio="none">
+            <path d="M0,300 L0,180 L60,180 L60,140 L120,140 L120,110 L180,110 L180,150 L240,150 L240,190 L360,190 L360,130 L420,130 L420,100 L480,100 L480,160 L600,160 L600,120 L660,120 L660,90 L720,90 L720,140 L840,140 L840,110 L900,110 L900,170 L1000,170 L1000,300 Z" fill="var(--mountain-back-color)" />
+        </svg>
+    </div>
+
+    <!-- Montanhas Pixel Art 3D (Frontal) -->
+    <div class="parallax-bg layer-mountains-front" id="mountains-front">
+        <svg class="pixel-mountain-svg" viewBox="0 0 1000 300" preserveAspectRatio="none">
+            <path d="M0,300 L0,220 L90,220 L90,170 L180,170 L180,130 L270,130 L270,180 L360,180 L360,120 L450,120 L450,160 L540,160 L540,100 L630,100 L630,150 L720,150 L720,130 L810,130 L810,190 L910,190 L910,230 L1000,230 L1000,300 Z" fill="var(--mountain-front-color)" />
+        </svg>
+    </div>
+
+    <!-- Widgets Superiores (Relógio e Clima) -->
     <header class="widgets-container">
         <div class="widget pixel-box" id="clock-widget">
             <span id="time">00:00:00</span>
@@ -30,6 +54,7 @@
         </div>
     </header>
 
+    <!-- Conteúdo Principal -->
     <main class="main-content">
         <section class="profile-container">
             <div class="img-wrapper">
@@ -41,22 +66,24 @@
             </p>
         </section>
 
-	<nav class="links-container">
-            <a href="https://instagram.com/ronalldo.mello/" target="_blank" class="pixel-btn">
+        <!-- Redes Sociais com Ícones do Bootstrap -->
+        <nav class="links-container">
+            <a href="https://instagram.com/ronalldo.mello/" target="_blank" rel="noopener noreferrer" class="pixel-btn">
                 <i class="bi bi-instagram"></i> Instagram
             </a>
-            <a href="https://youtube.com/@RonaldoMelloRN/" target="_blank" class="pixel-btn">
+            <a href="https://youtube.com/@RonaldoMelloRN/" target="_blank" rel="noopener noreferrer" class="pixel-btn">
                 <i class="bi bi-youtube"></i> YouTube
             </a>
-            <a href="https://linkedin.com/in/ronaldo-melo-de-oliveira/" target="_blank" class="pixel-btn">
+            <a href="https://linkedin.com/in/ronaldo-melo-de-oliveira/" target="_blank" rel="noopener noreferrer" class="pixel-btn">
                 <i class="bi bi-linkedin"></i> LinkedIn
             </a>
-            <a href="https://github.com/ronaldomelo116" target="_blank" class="pixel-btn">
+            <a href="https://github.com/ronaldomelo116" target="_blank" rel="noopener noreferrer" class="pixel-btn">
                 <i class="bi bi-github"></i> GitHub
             </a>
         </nav>
     </main>
 
+    <!-- GSAP e Lógica JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="script.js"></script>
 </body>
